@@ -1,0 +1,24 @@
+DodgeballStatTracker
+	- Score
+		- Team1
+		- Team2
+	- Team
+		-	Player
+			- Edit
+			- Delete
+			- Kill
+				- Edit
+				- Add
+				- Subtract
+				- Clear
+			- Catch
+				- Edit
+				- Add
+				- Subtract
+				- Clear
+			- Death
+				- Edit
+				- Add
+				- Subtract
+				- Clear
+	- Results
