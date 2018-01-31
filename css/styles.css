@@ -1,0 +1,9 @@
+#team-wrapper {
+	background: red;
+	height: 20vh;
+}
+
+.points {
+	padding-left: 5px;
+	padding-right: 5px;
+}

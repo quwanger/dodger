@@ -7,20 +7,69 @@
   <title>Dodger: The stat tracking butler</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<script src="https://unpkg.com/vue"></script>
-
 <div id="dodger">
-	<span v-show="!editable" v-on:click="editTeam(this)">{{ teamName }}</span>
-	<input type="text" ref="input" v-model="teamName" v-show="editable" v-on:blur="saveTeam">
-	<br />
+	<div id="team-wrapper">
+		<div class="container">
+			<div id="team-container" class="form-inline row">
+		  		<div class="col-xs-12">
+			  		<input type="text" class="form-control form-control-lg" placeholder="Enter team name...">
+			  	</div>
+		  	</div>
+	  	</div>
+	</div>
+
+	<div class="container">
+	  <form>
+	  	<br />
+	    <div class="form-inline row">
+	      <div class="col-xs-12">
+	        <input v-model="newPlayer" type="text" class="form-control" id="lgFormGroupInput" placeholder="Enter player name...">
+	        <button @click="addPlayer" v-bind:title="title" type="submit" class="btn btn-primary">Add</button>
+	      </div>
+	    </div>
+	  </form>
+	  <br />
+	  <div class="row">
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Kills</th>
+				<th>Deaths</th>
+				<th>Catches</th>
+				<th>+/-</th>
+			</tr>
+			<tr v-for="(player, index) in players">
+				<td>{{ player.name }}</td>
+				<td>
+					<button @click="minusPoints('kills', index)" class="btn btn-sm btn-primary">-</button>
+						<span class="points">{{ player.kills }}</span>
+					<button @click="addPoints('kills', index)" class="btn btn-sm btn-primary">+</button>
+				</td>
+				<td>
+					<button @click="minusPoints('deaths', index)" class="btn btn-sm btn-primary">-</button>
+						<span class="points">{{ player.deaths }}</span>
+					<button @click="addPoints('deaths', index)" class="btn btn-sm btn-primary">+</button>
+				</td>
+				<td>
+					<button @click="minusPoints('catches', index)" class="btn btn-sm btn-primary">-</button>
+						<span class="points">{{ player.catches }}</span>
+					<button @click="addPoints('catches', index)" class="btn btn-sm btn-primary">+</button>
+				</td>
+				<td>{{ player.plusminus }}</td>
+			</tr>
+		</table>
+	  </div>
+	</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="app.js"></script>
+<script src="https://unpkg.com/vue"></script>
+
+<script src="js/app.js"></script>
 </body>
 </html>
