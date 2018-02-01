@@ -46,14 +46,5 @@ var app = new Vue({
 					break;
 			}
         },
-	},
-
-	computed: {
-
-	},
-
-	// Runs when the Vue object is loaded
-	mounted() {
-		
 	}
 });

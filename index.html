@@ -27,7 +27,7 @@
 	    <div class="form-inline row">
 	      <div class="col-xs-12">
 	        <input v-model="newPlayer" type="text" class="form-control" id="lgFormGroupInput" placeholder="Enter player name...">
-	        <button @click="addPlayer" v-bind:title="title" type="submit" class="btn btn-primary">Add</button>
+	        <button @click.prevent="addPlayer" v-bind:title="title" class="btn btn-primary">Add</button>
 	      </div>
 	    </div>
 	  </form>
@@ -44,19 +44,19 @@
 			<tr v-for="(player, index) in players">
 				<td>{{ player.name }}</td>
 				<td>
-					<button @click="minusPoints('kills', index)" class="btn btn-sm btn-primary">-</button>
+					<button @click.prevent="minusPoints('kills', index)" class="btn btn-sm btn-primary">-</button>
 						<span class="points">{{ player.kills }}</span>
-					<button @click="addPoints('kills', index)" class="btn btn-sm btn-primary">+</button>
+					<button @click.prevent="addPoints('kills', index)" class="btn btn-sm btn-primary">+</button>
 				</td>
 				<td>
-					<button @click="minusPoints('deaths', index)" class="btn btn-sm btn-primary">-</button>
+					<button @click.prevent="minusPoints('deaths', index)" class="btn btn-sm btn-primary">-</button>
 						<span class="points">{{ player.deaths }}</span>
-					<button @click="addPoints('deaths', index)" class="btn btn-sm btn-primary">+</button>
+					<button @click.prevent="addPoints('deaths', index)" class="btn btn-sm btn-primary">+</button>
 				</td>
 				<td>
-					<button @click="minusPoints('catches', index)" class="btn btn-sm btn-primary">-</button>
+					<button @click.prevent="minusPoints('catches', index)" class="btn btn-sm btn-primary">-</button>
 						<span class="points">{{ player.catches }}</span>
-					<button @click="addPoints('catches', index)" class="btn btn-sm btn-primary">+</button>
+					<button @click.prevent="addPoints('catches', index)" class="btn btn-sm btn-primary">+</button>
 				</td>
 				<td>{{ player.plusminus }}</td>
 			</tr>
