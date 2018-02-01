@@ -7,3 +7,11 @@
 	padding-left: 5px;
 	padding-right: 5px;
 }
+
+.material-icons.small {
+	font-size: 1em;
+}
+
+table.centered thead tr th, table.centered tbody tr td {
+	height: 66px;
+}

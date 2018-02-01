@@ -1,108 +1,109 @@
+$(document).ready(function(){
+  $('.sidenav').sidenav({
+  	draggable: true
+  });
+});
+
 var app = new Vue({
-	el: '#dodger',
-	data: {
-		newPlayer: '',
-		players: [],
-		killValue: 1,
-		deathValue: -1,
-		catchValue: 2
-	},
+  el: '#dodger',
+  data: {
+    newPlayer: '',
+    players: [],
+    killValue: 1,
+    deathValue: -1,
+    catchValue: 2
+  },
 
-	methods: {
-		addPlayer() {
-			if (this.newPlayer.length > 0) {
-				this.players.push({ name: this.newPlayer, kills: 0, deaths: 0, catches: 0, plusminus: 0 });
-				this.newPlayer = '';
-			} else {
-				alert('Add a name!');
-			}
+  methods: {
+    addPlayer() {
+      if (this.newPlayer.length > 0) {
+        this.players.push({
+          name: this.newPlayer,
+          kills: 0,
+          deaths: 0,
+          catches: 0,
+          plusminus: 0
+        });
+        this.newPlayer = '';
+      } else {
+        alert('Add a name!');
+      }
 
-			this.save();
-		},
+      this.save();
+    },
 
-		addPoints(key, index) {
-			switch(key) {
-				case 'kills':
-					this.players[index].kills++;
-					break;
-				case 'deaths':
-					this.players[index].deaths++;
-					break;
-				case 'catches':
-					this.players[index].catches++;
-					break;
-			}
+    addPoints(key, index) {
+      switch (key) {
+        case 'kills':
+          this.players[index].kills++;
+          break;
+        case 'deaths':
+          this.players[index].deaths++;
+          break;
+        case 'catches':
+          this.players[index].catches++;
+          break;
+      }
+      this.calculatePlusMinus(index);
+      this.save();
+    },
 
-			this.calculatePlusMinus(index);
+    minusPoints(key, index) {
+      switch (key) {
+        case 'kills':
+          if (this.players[index].kills > 0) this.players[index].kills--;
+          break;
+        case 'deaths':
+          if (this.players[index].deaths > 0) this.players[index].deaths--;
+          break;
+        case 'catches':
+          if (this.players[index].catches > 0) this.players[index].catches--;
+          break;
+      }
+      this.calculatePlusMinus(index);
+      this.save();
+    },
 
-			this.save();
-        },
+    calculatePlusMinus(index) {
+      this.players[index].plusminus = (this.players[index].kills * this.killValue) + (this.players[index].deaths * this.deathValue) + (this.players[index].catches * this.catchValue);
+      this.save();
+    },
 
-        minusPoints(key, index) {
-    		switch(key) {
-				case 'kills':
-					if (this.players[index].kills > 0)
-						this.players[index].kills--;
-					break;
-				case 'deaths':
-					if (this.players[index].deaths > 0)
-						this.players[index].deaths--;
-					break;
-				case 'catches':
-					if (this.players[index].catches > 0)
-						this.players[index].catches--;
-					break;
-			}
+    resetTeam() {
+      for (i = 0; i < this.players.length; i++) {
+        this.players[i].kills = 0;
+        this.players[i].deaths = 0;
+        this.players[i].catches = 0;
+        this.players[i].plusminus = 0;
+      }
+    },
 
-			this.calculatePlusMinus(index);
+    deleteTeam() {
+      this.players = [];
+      this.save();
+    },
 
-			this.save();
-        },
+    resetPlayer(index) {
+      this.players[index].kills = 0;
+      this.players[index].deaths = 0;
+      this.players[index].catches = 0;
+      this.players[index].plusminus = 0;
+      this.save();
+    },
 
-        calculatePlusMinus(index) {
-        	this.players[index].plusminus = (this.players[index].kills * this.killValue) + (this.players[index].deaths * this.deathValue) + (this.players[index].catches * this.catchValue);
+    deletePlayer(index) {
+      this.players.splice(index, 1);
+      this.save();
+    },
 
-        	this.save();
-        },
-
-        resetTeam() {
-        	for (i = 0; i < this.players.length; i++) {
-        		this.players[i].kills = 0;
-        		this.players[i].deaths = 0;
-        		this.players[i].catches = 0;
-        		this.players[i].plusminus = 0;
-        	}
-        },
-
-        deleteTeam() {
-        	this.players = [];
-
-        	this.save();
-        },
-
-        resetPlayer(index) {
-        	this.players[index].kills = 0;
-        	this.players[index].deaths = 0;
-        	this.players[index].catches = 0;
-        	this.players[index].plusminus = 0;
-
-        	this.save();
-        },
-
-        deletePlayer(index) {
-        	this.players.splice(index, 1);
-
-        	this.save();
-        },
-
-        save() {
-        	localStorage.setItem('Dodger', JSON.stringify(this.players));
-        }
-	},
-
-    mounted() {
-    	if(localStorage.getItem('Dodger')) 	{
-            this.players = JSON.parse(localStorage.getItem('Dodger'));
-        }
+    save() {
+      localStorage.setItem('Dodger', JSON.stringify(this.players));
     }
+  },
+
+  mounted() {
+    if (localStorage.getItem('Dodger')) {
+      this.players = JSON.parse(localStorage.getItem('Dodger'));
+    }
+  }
 });
