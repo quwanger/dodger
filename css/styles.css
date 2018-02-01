@@ -1,6 +1,6 @@
-#team-wrapper {
-	background: red;
-	height: 20vh;
+.navbar-brand {
+	font-weight: bold;
+	color: white !important;
 }
 
 .points {
