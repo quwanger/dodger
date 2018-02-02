@@ -16,9 +16,9 @@
       <a href="#!" class="brand-logo"><i class="material-icons">face</i>Dodger</a>
     	<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a @click.prevent="save" href="#"><i class="material-icons">save</i></a></li>
-        <li><a @click.prevent="resetTeam" href="#"><i class="material-icons">autorenew</i></a></li>
-        <li><a @click.prevent="deleteTeam" href="#"><i class="material-icons">delete</i></a></li>
+        <li><a @click.prevent="save" href="#!"><i class="material-icons">save</i></a></li>
+        <li><a @click.prevent="resetTeam" href="#!"><i class="material-icons">autorenew</i></a></li>
+        <li><a @click.prevent="deleteTeam" href="#!"><i class="material-icons">delete</i></a></li>
       </ul>
       <ul id="mobile" class="sidenav">
       	<li>
@@ -79,12 +79,17 @@
 								<button @click.prevent="addPoints('catches', index)" class="waves-effect waves-light btn red lighten-1">+</button>
 							</td>
 							<td v-text="player.plusminus" valign="middle"></td>
-							<td><button @click.prevent="deletePlayer(index)" class="waves-effect waves-light btn red lighten-1"><i class="material-icons small">delete</i></button>
+							<td>
+								<button @click.prevent="deletePlayer(index)" class="waves-effect waves-light btn red lighten-1"><i class="material-icons small">delete</i></button>
+								&nbsp;
 								<button @click.prevent="resetPlayer(index)" class="waves-effect waves-light btn red lighten-1"><i class="material-icons small">autorenew</i></button>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div class="col s12">
+				<button class="btn test">test</button>
 			</div>
 		</div>
 	</div>
@@ -93,6 +98,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
 <script src="https://unpkg.com/vue"></script> 
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

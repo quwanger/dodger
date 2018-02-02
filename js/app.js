@@ -1,5 +1,15 @@
 $(document).ready(function(){
   $('.sidenav').sidenav();
+
+  // Default export is a4 paper, portrait, using milimeters for units
+  var doc = new jsPDF();
+
+  doc.text('Hello world!', 10, 10);
+  
+  $('.test').click(function() {
+    doc.save('a4.pdf'); 
+  })
+
 });
 
 var app = new Vue({
