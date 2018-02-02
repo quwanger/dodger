@@ -12,6 +12,30 @@
 	font-size: 1em;
 }
 
+.material-icons.large {
+	font-size: 4em;
+}
+
+nav .brand-logo i, nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi-"], nav .brand-logo i.material-icons {
+	margin-right: 10px;
+	margin-left: 15px;
+}
+
 table.centered thead tr th, table.centered tbody tr td {
 	height: 66px;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly])+label {
+	color: rgba(0,0,0,0.87);
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+	border-bottom: 1px solid rgba(0,0,0,0.87);
+	box-shadow: 0 1px 0 0 rgba(0,0,0,0.87);
+}
+
+@media(max-width: 992px) {
+	nav .brand-logo i, nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi-"], nav .brand-logo i.material-icons {
+		margin-right: 10px;
+	}
 }

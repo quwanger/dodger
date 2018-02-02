@@ -1,7 +1,5 @@
 $(document).ready(function(){
-  $('.sidenav').sidenav({
-  	draggable: true
-  });
+  $('.sidenav').sidenav();
 });
 
 var app = new Vue({
