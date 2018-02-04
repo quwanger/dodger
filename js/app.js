@@ -2,9 +2,10 @@ $(document).ready(function(){
   $('.sidenav').sidenav();
 });
 
-var app = new Vue({
+new Vue({
   el: '#dodger',
   data: {
+    teamName: '',
     newPlayer: '',
     players: [],
     killValue: 1,
