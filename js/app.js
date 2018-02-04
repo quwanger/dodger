@@ -95,11 +95,16 @@ var app = new Vue({
       this.save();
     },
 
-    save() {
+    save(location) {
       localStorage.setItem('Dodger', JSON.stringify(this.players));
+
+      if (location === 'nav') {
+        M.toast({html: 'Saved!'});
+      }
     },
 
     print() {
+      this.setPDF();
       var date = new Date();
       var currentDate = date.toDateString() + " " + date.getHours() + ":" + date.getMinutes();
 
@@ -124,7 +129,7 @@ var app = new Vue({
           },
 
           {
-            layout: 'lightHorizontalLines', // optional
+            layout: 'lightHorizontalLines',
             table: {
               headerRows: 1,
               widths: [ '*', '*', '*', '*', '*' ],
@@ -148,6 +153,8 @@ var app = new Vue({
       };
 
       pdfMake.createPdf(docDefinition).download();
+
+      M.toast({html: 'Printed!'});
     }
   },
 
