@@ -89,7 +89,7 @@
 				</table>
 			</div>
 			<div class="col s12">
-				<button class="btn test">test</button>
+				<button @click.prevent="print" class="btn test">test</button>
 			</div>
 		</div>
 	</div>
@@ -99,6 +99,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
 <script src="https://unpkg.com/vue"></script> 
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script src="js/pdfmake.min.js"></script>
+<script src="js/vfs_fonts.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

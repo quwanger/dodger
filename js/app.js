@@ -1,15 +1,27 @@
 $(document).ready(function(){
   $('.sidenav').sidenav();
 
-  // Default export is a4 paper, portrait, using milimeters for units
-  var doc = new jsPDF();
+  // var docDefinition = {
+  //   content: [
+  //     {
+  //       layout: 'lightHorizontalLines', // optional
+  //       table: {
+  //         // headers are automatically repeated if the table spans over multiple pages
+  //         // you can declare how many rows should be treated as headers
+  //         headerRows: 1,
+  //         widths: [ '*', 'auto', 100, '*' ],
 
-  doc.text('Hello world!', 10, 10);
-  
-  $('.test').click(function() {
-    doc.save('a4.pdf'); 
-  })
+  //         body: [
+  //           [ 'First', 'Second', 'Third', 'The last one' ],
+  //           [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' ],
+  //           [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4' ]
+  //         ]
+  //       }
+  //     }
+  //   ]
+  // };
 
+  //pdfMake.createPdf(docDefinition).download();
 });
 
 var app = new Vue({
@@ -19,7 +31,8 @@ var app = new Vue({
     players: [],
     killValue: 1,
     deathValue: -1,
-    catchValue: 2
+    catchValue: 2,
+    headers: ['Name', 'Kills', 'Deaths', 'Catches', '+/-'],
   },
 
   methods: {
@@ -106,6 +119,33 @@ var app = new Vue({
 
     save() {
       localStorage.setItem('Dodger', JSON.stringify(this.players));
+    },
+
+    print() {
+      var obj = this.players;
+      var array = [];
+      var forPDF = [this.headers];
+
+      for (var i = 0; i < this.players.length; i++) {
+        array[i] = [obj[i].name, obj[i].kills, obj[i].deaths, obj[i].catches, obj[i].plusminus];
+        forPDF.push(array[i]);
+      }
+
+      var docDefinition = {
+        content: [
+          {
+            layout: 'lightHorizontalLines', // optional
+            table: {
+              headerRows: 1,
+              widths: [ '*', '*', '*', '*', '*' ],
+
+              body: forPDF
+            }
+          }
+        ]
+      };
+
+      pdfMake.createPdf(docDefinition).download();
     }
   },
 
