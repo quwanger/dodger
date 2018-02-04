@@ -2,7 +2,7 @@ $(document).ready(function(){
   $('.sidenav').sidenav();
 });
 
-new Vue({
+var app = new Vue({
   el: '#dodger',
   data: {
     teamName: '',
@@ -11,7 +11,7 @@ new Vue({
     killValue: 1,
     deathValue: -1,
     catchValue: 2,
-    headers: ['Name', 'Kills', 'Deaths', 'Catches', '+/-'],
+    headers: ['Name', 'Kills', 'Deaths', 'Catches', '+/-']
   },
 
   methods: {
@@ -105,7 +105,6 @@ new Vue({
     },
 
     print() {
-      this.setPDF();
       var date = new Date();
       var currentDate = date.toDateString() + " " + date.getHours() + ":" + date.getMinutes();
 
