@@ -17,6 +17,7 @@
     	<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a @click.prevent="save" href="#!"><i class="material-icons">save</i></a></li>
+        <li><a @click.prevent="print" href="#!"><i class="material-icons">print</i></a></li>
         <li><a @click.prevent="resetTeam" href="#!"><i class="material-icons">autorenew</i></a></li>
         <li><a @click.prevent="deleteTeam" href="#!"><i class="material-icons">delete</i></a></li>
       </ul>
@@ -30,6 +31,7 @@
 			    </div>
 		  	</li>
         <li><a @click.prevent="save" class="sidenav-close" href="#"><i class="material-icons">save</i> Save</a></li>
+        <li><a @click.prevent="print" class="sidenav-close" href="#"><i class="material-icons">print</i> Print</a></li>
         <li><a @click.prevent="resetTeam" class="sidenav-close" href="#"><i class="material-icons">autorenew</i> Reset All</a></li>
         <li><a @click.prevent="deleteTeam" class="sidenav-close" href="#"><i class="material-icons">delete</i> Delete All</a></li>
       </ul>
@@ -87,9 +89,6 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
-			<div class="col s12">
-				<button @click.prevent="print" class="btn test">test</button>
 			</div>
 		</div>
 	</div>

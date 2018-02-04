@@ -1,27 +1,5 @@
 $(document).ready(function(){
   $('.sidenav').sidenav();
-
-  // var docDefinition = {
-  //   content: [
-  //     {
-  //       layout: 'lightHorizontalLines', // optional
-  //       table: {
-  //         // headers are automatically repeated if the table spans over multiple pages
-  //         // you can declare how many rows should be treated as headers
-  //         headerRows: 1,
-  //         widths: [ '*', 'auto', 100, '*' ],
-
-  //         body: [
-  //           [ 'First', 'Second', 'Third', 'The last one' ],
-  //           [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' ],
-  //           [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4' ]
-  //         ]
-  //       }
-  //     }
-  //   ]
-  // };
-
-  //pdfMake.createPdf(docDefinition).download();
 });
 
 var app = new Vue({
@@ -122,6 +100,9 @@ var app = new Vue({
     },
 
     print() {
+      var date = new Date();
+      var currentDate = date.toDateString() + " " + date.getHours() + ":" + date.getMinutes();
+
       var obj = this.players;
       var array = [];
       var forPDF = [this.headers];
@@ -134,15 +115,36 @@ var app = new Vue({
       var docDefinition = {
         content: [
           {
+            text: [
+              'Team Name\n',
+              '(' + currentDate + ' Results)\n\n'
+            ],
+            style: 'header',
+            alignment: 'center'
+          },
+
+          {
             layout: 'lightHorizontalLines', // optional
             table: {
               headerRows: 1,
               widths: [ '*', '*', '*', '*', '*' ],
 
               body: forPDF
-            }
+            },
+            style: 'table'
           }
-        ]
+        ],
+
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+          },
+
+          table: {
+            alignment: 'center'
+          }
+        }
       };
 
       pdfMake.createPdf(docDefinition).download();
