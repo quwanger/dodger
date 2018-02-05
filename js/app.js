@@ -121,7 +121,7 @@ var app = new Vue({
         content: [
           {
             text: [
-              'Team Name\n',
+              this.teamName + '\n',
               '(' + currentDate + ' Results)\n\n'
             ],
             style: 'header',

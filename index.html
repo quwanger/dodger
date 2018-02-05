@@ -40,16 +40,18 @@
 	<div class="container">
 		<div class="row">
 			<form class="col s12">
-	      <div class="row">
-	      	<br />
-	        <div class="input-field col s8">
-	          <input v-model="newPlayer" id="icon_prefix" type="text" class="validate">
-	          <label for="icon_prefix">Enter player name</label>
-	        </div>
-	        <div class="input-field col s4">
-	        	<button @click.prevent="addPlayer" class="btn red lighten-1"><i class="material-icons">add</i></button>
-	        </div>
-	      </div>
+				<br />
+      	<div class="input-field col s8">
+          <input v-model="teamName" @on:keyup.enter="addTeam" id="team" type="text">
+          <label for="team">Team name</label>
+        </div>
+        <div class="input-field col s8">
+          <input v-model="newPlayer" id="player" type="text">
+          <label for="player">Enter player name</label>
+        </div>
+        <div class="input-field col s4">
+        	<button @click.prevent="addPlayer" class="btn red lighten-1"><i class="material-icons">add</i></button>
+        </div>
 	    </form>
 		</div>
 		<div class="row">
